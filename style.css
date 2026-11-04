@@ -1,0 +1,771 @@
+/* ==========================================================
+   1. Design settings
+   Change a colour here and it updates across the whole site.
+   ========================================================== */
+:root {
+  --bg: #05060f;
+  --surface: rgba(17, 21, 43, 0.72);
+  --line: rgba(190, 205, 255, 0.18);
+  --text: #eef0fb;
+  --muted: #aeb5cf;
+  --accent: #7ef5d2;
+  --accent-2: #8f9bff;
+  --moon: #f1ecdc;
+
+  --font-display: "Unbounded", "Avenir Next", "Segoe UI", sans-serif;
+  --font-body: "Manrope", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+
+  --radius: 18px;
+  --header-height: 68px;
+}
+
+/* ==========================================================
+   2. Basics
+   ========================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--bg);
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-height) + 16px);
+}
+
+body {
+  margin: 0;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  overflow-wrap: break-word;
+}
+
+/* Makes sure anything marked "hidden" really stays hidden */
+[hidden] {
+  display: none !important;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 4vw, 2.9rem);
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+a {
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+#stars {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+main,
+.site-footer {
+  position: relative;
+}
+
+/* Keeps content centred, with space on the sides on every screen */
+.container {
+  width: min(1160px, 100%);
+  margin-inline: auto;
+  padding-inline: clamp(16px, 4vw, 40px);
+}
+
+.eyebrow {
+  margin-bottom: 14px;
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.eyebrow::before {
+  content: "// ";
+  color: var(--accent-2);
+}
+
+/* Link for keyboard users: only visible when it gets focus */
+.skip-link {
+  position: fixed;
+  top: 8px;
+  left: 16px;
+  z-index: 30;
+  padding: 8px 14px;
+  border-radius: 8px;
+  background: var(--accent);
+  color: var(--bg);
+  transform: translateY(-200%);
+}
+
+.skip-link:focus {
+  transform: none;
+}
+
+/* ==========================================================
+   3. Buttons
+   ========================================================== */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  padding: 10px 22px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font: 700 0.9375rem var(--font-body);
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s, border-color 0.2s;
+}
+
+.button:not(:disabled):hover {
+  transform: translateY(-2px);
+}
+
+.button-primary {
+  background: var(--accent);
+  color: #04110d;
+  box-shadow: 0 0 26px rgba(126, 245, 210, 0.28);
+}
+
+.button-primary:hover {
+  box-shadow: 0 0 38px rgba(126, 245, 210, 0.5);
+}
+
+.button-secondary {
+  border-color: var(--line);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+}
+
+.button-secondary:not(:disabled):hover {
+  border-color: var(--accent);
+}
+
+.button:disabled {
+  color: var(--muted);
+  cursor: not-allowed;
+}
+
+.button-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* ==========================================================
+   4. Header and navigation
+   ========================================================== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  border-bottom: 1px solid var(--line);
+  background: rgba(5, 6, 15, 0.78);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  min-height: var(--header-height);
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-display);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.logo-moon {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--moon);
+  box-shadow: inset -5px -3px 0 rgba(5, 6, 15, 0.65), 0 0 12px rgba(241, 236, 220, 0.6);
+}
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.header-controls nav {
+  display: flex;
+  gap: 24px;
+}
+
+.header-controls nav a {
+  color: var(--muted);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.header-controls nav a:hover {
+  color: var(--accent);
+}
+
+.language-switch {
+  display: flex;
+  padding: 3px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+}
+
+.language-switch button {
+  min-width: 40px;
+  min-height: 32px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  font: 500 0.75rem var(--font-mono);
+  cursor: pointer;
+}
+
+.language-switch button[aria-pressed="true"] {
+  background: var(--accent);
+  color: #04110d;
+}
+
+.menu-button {
+  display: none;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+}
+
+/* Three menu lines: the span plus two shadows */
+.menu-button span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  margin: auto;
+  background: currentColor;
+  box-shadow: 0 -6px 0 currentColor, 0 6px 0 currentColor;
+}
+
+/* ==========================================================
+   5. Hero and moon
+   ========================================================== */
+.hero {
+  overflow: hidden;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  align-items: center;
+  gap: 32px;
+  min-height: calc(100svh - var(--header-height));
+  padding-block: 48px;
+}
+
+h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 7.2vw, 5.25rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  text-shadow: 0 0 40px rgba(143, 155, 255, 0.45);
+}
+
+.hero-subtitle {
+  margin-top: 16px;
+  font-size: clamp(1.2rem, 2.4vw, 1.625rem);
+  font-weight: 500;
+}
+
+.hero-intro {
+  max-width: 46ch;
+  margin-block: 12px 32px;
+  color: var(--muted);
+}
+
+.moon-scene {
+  position: relative;
+  width: min(100%, 460px);
+  aspect-ratio: 1;
+  margin-inline: auto;
+}
+
+.moon {
+  position: absolute;
+  inset: 16%;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 34% 30%, rgba(120, 116, 110, 0.5) 0 8%, transparent 8.6%),
+    radial-gradient(circle at 62% 24%, rgba(120, 116, 110, 0.3) 0 5%, transparent 5.6%),
+    radial-gradient(circle at 26% 62%, rgba(120, 116, 110, 0.38) 0 11%, transparent 11.6%),
+    radial-gradient(circle at 58% 56%, rgba(120, 116, 110, 0.42) 0 15%, transparent 15.6%),
+    radial-gradient(circle at 44% 84%, rgba(120, 116, 110, 0.28) 0 6%, transparent 6.6%),
+    radial-gradient(circle at 80% 42%, rgba(120, 116, 110, 0.25) 0 5%, transparent 5.6%),
+    var(--moon);
+  box-shadow:
+    inset -38px -26px 60px rgba(5, 6, 15, 0.82),
+    inset 8px 6px 24px rgba(255, 255, 255, 0.5),
+    0 0 70px rgba(143, 155, 255, 0.4),
+    0 0 150px rgba(126, 245, 210, 0.16);
+}
+
+.orbit {
+  position: absolute;
+  inset: 3%;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  animation: spin 26s linear infinite;
+}
+
+.orbit-two {
+  inset: 10%;
+  border-style: dashed;
+  animation-duration: 40s;
+  animation-direction: reverse;
+}
+
+.satellite {
+  position: absolute;
+  top: 14.6%;
+  left: 14.6%;
+  width: 10px;
+  height: 10px;
+  margin: -5px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 16px var(--accent);
+}
+
+.orbit-two .satellite {
+  top: 85.4%;
+  background: var(--accent-2);
+  box-shadow: 0 0 16px var(--accent-2);
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ==========================================================
+   6. Sections
+   ========================================================== */
+.section {
+  padding-block: clamp(64px, 10vw, 120px);
+}
+
+.section-heading {
+  max-width: 640px;
+  margin-bottom: 40px;
+}
+
+.section-heading > p:last-child {
+  margin-top: 14px;
+  color: var(--muted);
+}
+
+/* About */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: clamp(28px, 6vw, 72px);
+}
+
+.about-copy p + p {
+  margin-top: 16px;
+}
+
+.about-copy > p {
+  color: var(--muted);
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 32px 0 0;
+}
+
+.facts div {
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+}
+
+.facts dt {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1.4;
+}
+
+.facts dd {
+  margin: 6px 0 0;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+/* Project cards */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 26px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  border-color: rgba(126, 245, 210, 0.55);
+  box-shadow: 0 0 40px rgba(126, 245, 210, 0.1);
+}
+
+.card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.card-icon {
+  width: 34px;
+  height: 34px;
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.status {
+  color: var(--accent-2);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+}
+
+.card.is-live .status {
+  color: var(--accent);
+}
+
+.card h3,
+.skill-group h3 {
+  font-family: var(--font-display);
+  font-size: 1.0625rem;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.card > p {
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+.card-button {
+  margin-top: auto;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tags li {
+  padding: 4px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+}
+
+.card .tags {
+  margin-bottom: 10px;
+}
+
+/* Skills */
+.skill-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.skill-group {
+  padding: 26px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.skill-group h3 {
+  margin-bottom: 16px;
+}
+
+.skill-group-highlight {
+  border-color: rgba(126, 245, 210, 0.5);
+}
+
+.level {
+  color: var(--accent);
+}
+
+/* Contact */
+.contact-panel {
+  padding: clamp(32px, 7vw, 80px);
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 85% 10%, rgba(143, 155, 255, 0.25), transparent 50%),
+    radial-gradient(circle at 10% 100%, rgba(126, 245, 210, 0.14), transparent 50%),
+    var(--surface);
+  text-align: center;
+}
+
+.contact-panel p:not(.eyebrow) {
+  max-width: 52ch;
+  margin: 16px auto 0;
+  color: var(--muted);
+}
+
+.contact-panel p.contact-pending {
+  display: inline-block;
+  margin-top: 28px;
+  padding: 10px 18px;
+  border: 1px dashed var(--line);
+  border-radius: 14px;
+  color: var(--text);
+  font-size: 0.9375rem;
+}
+
+.contact-panel .button {
+  margin-top: 28px;
+}
+
+/* Footer */
+.site-footer {
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+.site-footer .container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 4px 24px;
+  padding-block: 24px;
+}
+
+/* ==========================================================
+   7. Mini-tool window
+   ========================================================== */
+.tool-dialog {
+  width: min(960px, calc(100% - 32px));
+  height: min(760px, 88dvh);
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #0a0c1c;
+  color: var(--text);
+}
+
+.tool-dialog[open] {
+  display: flex;
+  flex-direction: column;
+}
+
+.tool-dialog::backdrop {
+  background: rgba(2, 3, 10, 0.78);
+  backdrop-filter: blur(4px);
+}
+
+.tool-dialog-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.tool-dialog-header h2 {
+  font-size: 1rem;
+}
+
+.tool-dialog iframe {
+  flex: 1;
+  width: 100%;
+  border: 0;
+  background: #fff;
+}
+
+/* ==========================================================
+   8. Fade-in while scrolling (only when JavaScript is running)
+   ========================================================== */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.7s, transform 0.7s;
+}
+
+.js .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.js .card.reveal {
+  transition: opacity 0.7s, transform 0.7s, border-color 0.3s, box-shadow 0.3s;
+}
+
+/* ==========================================================
+   9. Smaller screens
+   ========================================================== */
+@media (max-width: 960px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .menu-button {
+    display: block;
+  }
+
+  /* Without JavaScript the menu stays open, so the links always work */
+  .js .header-controls:not(.is-open) {
+    display: none;
+  }
+
+  .header-inner {
+    flex-wrap: wrap;
+  }
+
+  .header-controls {
+    flex-basis: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-bottom: 20px;
+  }
+
+  .header-controls nav {
+    flex-direction: column;
+    gap: 4px;
+    width: 100%;
+  }
+
+  .header-controls nav a {
+    display: block;
+    padding-block: 8px;
+    font-size: 1.0625rem;
+  }
+
+  .hero-grid {
+    grid-template-columns: 1fr;
+    min-height: 0;
+    padding-block: 32px 64px;
+  }
+
+  .moon-scene {
+    grid-row: 1;
+    width: min(70vw, 300px);
+  }
+
+  .card-grid,
+  .skill-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .facts {
+    grid-template-columns: 1fr;
+  }
+
+  .button-row .button {
+    flex: 1 1 100%;
+  }
+}
+
+/* ==========================================================
+   10. Less movement for visitors who prefer that
+   ========================================================== */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .orbit {
+    animation: none;
+  }
+
+  .js .reveal,
+  .js .card.reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .button,
+  .card {
+    transition: none;
+  }
+
+  .button:not(:disabled):hover {
+    transform: none;
+  }
+}

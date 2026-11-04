@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Moonpage — Portfolio and projects</title>
+  <meta name="description" content="Moonpage is my portfolio: mini-tools, experiments and everything I learn along the way.">
+  <meta name="theme-color" content="#05060f">
+
+  <!-- Small moon icon for the browser tab -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill='%237ef5d2' d='M21 3a13 13 0 1 0 8 19A11 11 0 0 1 21 3z'/%3E%3C/svg%3E">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500;700&family=Unbounded:wght@500;700&display=swap">
+
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Text for each language first, then the code that uses it -->
+  <script src="translations.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
+
+  <!-- The moving stars behind the page (drawn by script.js) -->
+  <canvas id="stars" aria-hidden="true"></canvas>
+
+  <!-- ===== Top navigation ===== -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="#top">
+        <span class="logo-moon" aria-hidden="true"></span>
+        Moonpage
+      </a>
+
+      <button class="menu-button" id="menu-button" type="button" aria-expanded="false" aria-controls="site-nav" data-i18n-label="nav.menu" aria-label="Open or close menu">
+        <span aria-hidden="true"></span>
+      </button>
+
+      <div class="header-controls" id="site-nav">
+        <nav data-i18n-label="nav.label" aria-label="Main navigation">
+          <a href="#about" data-i18n="nav.about">About</a>
+          <a href="#projects" data-i18n="nav.projects">Projects</a>
+          <a href="#skills" data-i18n="nav.skills">Skills</a>
+          <a href="#contact" data-i18n="nav.contact">Contact</a>
+        </nav>
+        <!-- script.js fills this with one button per language -->
+        <div class="language-switch" id="language-switch" role="group" data-i18n-label="lang.label" aria-label="Choose language"></div>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ===== Hero ===== -->
+    <section class="hero" id="top">
+      <div class="container hero-grid">
+        <div class="hero-text">
+          <p class="eyebrow" data-i18n="hero.eyebrow">Signal from a developer in training</p>
+          <h1>Moonpage</h1>
+          <p class="hero-subtitle" data-i18n="hero.subtitle">My portfolio and projects</p>
+          <p class="hero-intro" data-i18n="hero.text">Small tools, big ideas, and everything I learn on the way to the moon.</p>
+          <div class="button-row">
+            <a class="button button-primary" href="#projects" data-i18n="hero.ctaProjects">Explore projects</a>
+            <a class="button button-secondary" href="#contact" data-i18n="hero.ctaContact">Make contact</a>
+          </div>
+        </div>
+
+        <!-- The moon is drawn entirely with CSS -->
+        <div class="moon-scene" aria-hidden="true">
+          <div class="orbit orbit-one"><span class="satellite"></span></div>
+          <div class="orbit orbit-two"><span class="satellite"></span></div>
+          <div class="moon"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== About me ===== -->
+    <section class="section" id="about">
+      <div class="container about-grid">
+        <div class="reveal">
+          <p class="eyebrow" data-i18n="about.eyebrow">About me</p>
+          <h2 data-i18n="about.title">Still learning. Already launching.</h2>
+        </div>
+        <div class="about-copy reveal">
+          <p data-i18n="about.p1">Welcome aboard Moonpage, my small corner of the internet and the launch pad for everything I'm building.</p>
+          <p data-i18n="about.p2">I like turning ideas into tools people can actually use. Every project starts as a "what if", and with enough curiosity and bug fixing it might just reach orbit.</p>
+          <p data-i18n="about.p3">I'm early in my journey, and I'm sharing it as I go. Some experiments work the first time. Most don't. That's the fun part.</p>
+          <dl class="facts">
+            <div>
+              <dt data-i18n="about.fact1Label">Now learning</dt>
+              <dd>Python</dd>
+            </div>
+            <div>
+              <dt data-i18n="about.fact2Label">Now building</dt>
+              <dd data-i18n="about.fact2">Three mini-tools</dd>
+            </div>
+            <div>
+              <dt data-i18n="about.fact3Label">Fuelled by</dt>
+              <dd data-i18n="about.fact3">Curiosity</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Projects =====
+         To connect a finished tool: put its file in the tools folder and
+         fill in data-tool, for example data-tool="tools/bookkeeping.html".
+         The card then gets a working "Open tool" button by itself. -->
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="eyebrow" data-i18n="projects.eyebrow">Projects</p>
+          <h2 data-i18n="projects.title">Mini-tools in the launch bay</h2>
+          <p data-i18n="projects.intro">Three tools I'm building. Each one will open and work right here on this page once it's ready.</p>
+        </div>
+
+        <div class="card-grid">
+          <article class="card reveal" data-tool="">
+            <div class="card-top">
+              <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h14v18l-3-2-2 2-2-2-2 2-2-2-3 2zM9 8h6M9 12h6"/></svg>
+              <span class="status" data-status data-i18n="status.dev">In development</span>
+            </div>
+            <h3 data-i18n="p1.title">Simple Bookkeeping</h3>
+            <p data-i18n="p1.text">A simple platform to keep track of income and expenses, so you can see where you stand without wrestling a spreadsheet.</p>
+            <ul class="tags">
+              <li>JavaScript</li>
+              <li data-i18n="tag.finance">Finance</li>
+            </ul>
+            <button class="button button-secondary card-button" type="button" disabled data-i18n="projects.soon">Coming soon</button>
+          </article>
+
+          <article class="card reveal" data-tool="">
+            <div class="card-top">
+              <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18c1.500 0 2-1 2-2s-1-1.500-1-2.500S14 15 15 15h2a4 4 0 0 0 4-4c0-4.500-4-8-9-8z"/><circle cx="7.500" cy="11" r=".6"/><circle cx="11" cy="7.500" r=".6"/><circle cx="15.500" cy="8.500" r=".6"/></svg>
+              <span class="status" data-status data-i18n="status.dev">In development</span>
+            </div>
+            <h3 data-i18n="p2.title">Theme Studio</h3>
+            <p data-i18n="p2.text">Pick and adjust themes for your socials, and shape a look that's unmistakably yours.</p>
+            <ul class="tags">
+              <li>JavaScript</li>
+              <li data-i18n="tag.design">Design</li>
+            </ul>
+            <button class="button button-secondary card-button" type="button" disabled data-i18n="projects.soon">Coming soon</button>
+          </article>
+
+          <article class="card reveal" data-tool="">
+            <div class="card-top">
+              <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.500A8.500 8.500 0 1 1 9.500 4a7 7 0 0 0 10.500 10.500z"/></svg>
+              <span class="status" data-status data-i18n="status.dev">In development</span>
+            </div>
+            <h3 data-i18n="p3.title">Moon Phase Tracker</h3>
+            <p data-i18n="p3.text">See tonight's moon phase and count down to the next full moon. The obvious tool for a site with this name.</p>
+            <ul class="tags">
+              <li>JavaScript</li>
+              <li data-i18n="tag.astronomy">Astronomy</li>
+            </ul>
+            <button class="button button-secondary card-button" type="button" disabled data-i18n="projects.soon">Coming soon</button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Skills ===== -->
+    <section class="section" id="skills">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="eyebrow" data-i18n="skills.eyebrow">Skills</p>
+          <h2 data-i18n="skills.title">Current toolkit</h2>
+          <p data-i18n="skills.intro">Everything here is still growing, and that's the point.</p>
+        </div>
+
+        <div class="skill-grid">
+          <div class="skill-group reveal">
+            <h3 data-i18n="skills.web">Building for the web</h3>
+            <ul class="tags">
+              <li>HTML</li>
+              <li>CSS</li>
+              <li>JavaScript</li>
+            </ul>
+          </div>
+          <div class="skill-group skill-group-highlight reveal">
+            <h3 data-i18n="skills.learning">Now learning</h3>
+            <ul class="tags">
+              <li>Python <span class="level" data-i18n="skills.beginner">Beginner</span></li>
+            </ul>
+          </div>
+          <div class="skill-group reveal">
+            <h3 data-i18n="skills.people">People skills</h3>
+            <ul class="tags">
+              <li data-i18n="skills.problem">Problem solving</li>
+              <li data-i18n="skills.creative">Creative thinking</li>
+              <li data-i18n="skills.curiosity">Curiosity</li>
+            </ul>
+          </div>
+          <div class="skill-group reveal">
+            <h3 data-i18n="skills.languages">Languages</h3>
+            <ul class="tags">
+              <li data-i18n="skills.dutch">Dutch</li>
+              <li data-i18n="skills.english">English</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Contact =====
+         Your email address is set at the top of script.js (CONTACT_EMAIL). -->
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="contact-panel reveal">
+          <p class="eyebrow" data-i18n="contact.eyebrow">Contact</p>
+          <h2 data-i18n="contact.title">Open a channel</h2>
+          <p data-i18n="contact.text">Got an idea, a question or feedback on one of my tools? I'd love to hear it.</p>
+          <p class="contact-pending" id="contact-pending" data-i18n="contact.pending">A dedicated email address is on its way. Check back soon.</p>
+          <a class="button button-primary" id="contact-email" href="#" hidden></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <span>© 2026 Moonpage</span>
+      <span data-i18n="footer.built">Built with HTML, CSS and JavaScript.</span>
+    </div>
+  </footer>
+
+  <!-- The window a finished mini-tool opens in -->
+  <dialog class="tool-dialog" id="tool-dialog">
+    <div class="tool-dialog-header">
+      <h2 id="tool-dialog-title"></h2>
+      <button class="button button-secondary" id="tool-dialog-close" type="button" data-i18n="tool.close">Close</button>
+    </div>
+    <iframe id="tool-frame" title=""></iframe>
+  </dialog>
+</body>
+</html>

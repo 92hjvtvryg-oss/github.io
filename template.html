@@ -1,0 +1,56 @@
+<!doctype html>
+<!--
+  Starter for a new mini-tool.
+
+  1. Copy this file and rename it, for example to bookkeeping.html
+  2. Build your tool in the copy
+  3. In index.html, fill in data-tool on the matching project card:
+     data-tool="tools/bookkeeping.html"
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mini-tool</title>
+  <style>
+    body {
+      display: grid;
+      place-content: center;
+      gap: 16px;
+      min-height: 100vh;
+      margin: 0;
+      padding: 16px;
+      box-sizing: border-box;
+      background: #0a0c1c;
+      color: #eef0fb;
+      font-family: system-ui, sans-serif;
+      text-align: center;
+    }
+
+    button {
+      padding: 12px 24px;
+      border: 0;
+      border-radius: 999px;
+      background: #7ef5d2;
+      color: #04110d;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>My mini-tool</h1>
+  <button id="counter" type="button">Clicked 0 times</button>
+
+  <script>
+    let clicks = 0;
+    const counter = document.getElementById("counter");
+
+    counter.addEventListener("click", () => {
+      clicks += 1;
+      counter.textContent = `Clicked ${clicks} times`;
+    });
+  </script>
+</body>
+</html>
