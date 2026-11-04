@@ -1,4 +1,4 @@
-gi# Moonpage
+# Moonpage
 
 Mijn persoonlijke portfolio, gemaakt met HTML, CSS en JavaScript.
 
